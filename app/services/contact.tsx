@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { sendContactForm } from ".";
+import emailjs from "emailjs-com";
 import style from "./contact.module.css";
 import Image from "next/image";
 import facebook from "/public/images/facebook.png";
@@ -10,24 +11,46 @@ import twitter from "/public/images/twitter.png";
 import Link from "next/link";
 
 const Contact = () => {
-  const [message, setMessage] = useState("");
+  const [formData, setFormData] = useState({
+    user_name: "",
+    user_email: "",
+    message: "",
+  });
+
   const formRef = useRef();
 
-  const submitContact = async (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      comment: formData.get("comment"),
-    };
-    const res = await sendContactForm(data);
-    if (res === 0) {
-      setMessage("Thank you for your valuable comment!");
-      formRef.current.reset();
-    } else {
-      setMessage("Something went wrong! Please try again");
-    }
+
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+      )
+      .then(
+        (result) => {
+          alert("Message sent successfully!");
+        },
+        (error) => {
+          alert("Failed to send message: " + error.text);
+        }
+      );
+
+    setFormData({
+      user_name: "",
+      user_email: "",
+      message: "",
+    });
   };
 
   return (
@@ -37,30 +60,34 @@ const Contact = () => {
           <h1 className={style.heading}>Contact Me</h1>
           <p>Let's build something amazing together</p>
         </div>
-        <div className={style.messageContainer}>
-          {message && (
-            <div className={style.message}>
-              {message}
-              <span onClick={() => setMessage("")}>&times;</span>
-            </div>
-          )}
-        </div>
-        <form className={style.form} ref={formRef} onSubmit={submitContact}>
+
+        <form className={style.form} ref={formRef} onSubmit={handleSubmit}>
           <label className={style.label}>Name</label>
           <input
             className={style.input}
-            name="name"
+            name="user_name"
+            value={formData.user_name}
+            onChange={handleChange}
             required
             type="text"
             minLength={3}
             maxLength={25}
           />
           <label className={style.label}>Email</label>
-          <input className={style.input} name="email" required type="email" />
+          <input
+            className={style.input}
+            name="user_email"
+            value={formData.user_email}
+            onChange={handleChange}
+            required
+            type="email"
+          />
           <label className={style.label}>Message</label>
           <textarea
             className={style.textarea}
-            name="comment"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
             required
             rows={5}
           ></textarea>
@@ -68,23 +95,23 @@ const Contact = () => {
             Send
           </button>
         </form>
-      </div>
-      <div className={style.horizontalLine}></div>
-      <footer className={style.footer}>
-        <div className={style.footerTop}>
-          <span>Joseph</span>
+        <div className={style.horizontalLine}></div>
+        <footer className={style.footer}>
+          <div className={style.footerTop}>
+            <span>Joseph</span>
 
-          <div className={style.socialImages}>
-            <Image src={facebook} alt="facebook" width={25} height={25} />
-            <Image src={instagram} alt="instagram" width={25} height={25} />
-            <Image src={twitter} alt="twitter" width={25} height={25} />
+            <div className={style.socialImages}>
+              <Image src={facebook} alt="facebook" width={25} height={25} />
+              <Image src={instagram} alt="instagram" width={25} height={25} />
+              <Image src={twitter} alt="twitter" width={25} height={25} />
+            </div>
           </div>
-        </div>
 
-        <div className={style.back}>
-          <Link href="/">Back to top</Link>
-        </div>
-      </footer>
+          <div className={style.back}>
+            <Link href="/">Back to top</Link>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 };

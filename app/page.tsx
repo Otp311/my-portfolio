@@ -14,29 +14,24 @@ import python from "/public/images/python.png";
 import atom from "/public/images/atom.png";
 import cafe from "/public/images/cafe.png";
 import csm from "/public/images/csm.png";
-import Contact from ".//services/contact";
+import Contact from "./services/contact";
+import arrow from "/public/images/arrow.png";
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.navbar}>
-          <div className={styles.logo}>
+          <Link href="/" className={styles.logo}>
             <h1 className={styles.o}>O</h1>
             <h1 className={styles.name}>seph</h1>
             <span className={styles.span}>.</span>
-          </div>
+          </Link>
 
           <div className={styles.navlink}>
             <div className={styles.talk}>
-              <Link href="#">Let&apos;s talk</Link>
-            </div>
-
-            <div className={styles.links}>
-              <Link href="#">Home</Link>
-              <Link href="#">About</Link>
-              <Link href="/services">Contact</Link>
-              <Link href="#">Resume</Link>
+              <Link href="/services">Let&apos;s talk</Link>
+              <Image src={arrow} alt="Arrow" width={30} height={30} />
             </div>
           </div>
         </div>
@@ -79,17 +74,6 @@ export default function Home() {
       </div>
 
       <div className={styles.Secondsection}>
-        <svg
-          className={styles.svg}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
-        >
-          <path
-            fill="#0099ff"
-            fill-opacity="1"
-            d="M0,192L60,208C120,224,240,256,360,229.3C480,203,600,117,720,96C840,75,960,117,1080,112C1200,107,1320,53,1380,26.7L1440,0L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-          ></path>
-        </svg>
         <div className={styles.Secondcontent}>
           <div className={styles.about}>
             <span>About me</span>
@@ -99,8 +83,6 @@ export default function Home() {
               design and technology, and always seeking new ways to improve user
               experiences.
             </p>
-
-            <button className={styles.aboutButton}>Learn more</button>
           </div>
 
           <div className={styles.aboutimg}>
