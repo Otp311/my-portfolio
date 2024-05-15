@@ -56,49 +56,61 @@ const Contact = () => {
   return (
     <div className={style.container}>
       <div className={style.ContactPage}>
-        <div className={style.text}>
-          <h1 className={style.heading}>Contact Me</h1>
-          <p>Let's build something amazing together</p>
-        </div>
+        <div className={style.contactContainer}>
+          <div className={style.text}>
+            <h1 className={style.heading}>Contact Me</h1>
+            <p>
+              Like what you see? Let's build something amazing together! Contact
+              me today for a free consultation. Your dream website is just a
+              click away! Contact me now to get started.
+            </p>
+          </div>
 
-        <form className={style.form} ref={formRef} onSubmit={handleSubmit}>
-          <label className={style.label}>Name</label>
-          <input
-            className={style.input}
-            name="user_name"
-            value={formData.user_name}
-            onChange={handleChange}
-            required
-            type="text"
-            minLength={3}
-            maxLength={25}
-          />
-          <label className={style.label}>Email</label>
-          <input
-            className={style.input}
-            name="user_email"
-            value={formData.user_email}
-            onChange={handleChange}
-            required
-            type="email"
-          />
-          <label className={style.label}>Message</label>
-          <textarea
-            className={style.textarea}
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={5}
-          ></textarea>
-          <button className={style.button} type="submit">
-            Send
-          </button>
-        </form>
+          <form className={style.form} ref={formRef} onSubmit={handleSubmit}>
+            <label className={style.label}>Name</label>
+            <input
+              className={style.input}
+              name="user_name"
+              value={formData.user_name}
+              onChange={handleChange}
+              required
+              type="text"
+              minLength={3}
+              maxLength={25}
+            />
+            <label className={style.label}>Email</label>
+            <input
+              className={style.input}
+              name="user_email"
+              value={formData.user_email}
+              onChange={handleChange}
+              required
+              type="email"
+            />
+            <label className={style.label}>Message</label>
+            <textarea
+              className={style.textarea}
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows={5}
+            ></textarea>
+            <button className={style.button} type="submit">
+              Send
+            </button>
+          </form>
+        </div>
         <div className={style.horizontalLine}></div>
         <footer className={style.footer}>
           <div className={style.footerTop}>
-            <span>Joseph</span>
+            <div className={style.me}>
+              <span>Joseph</span>
+              <p>
+                Passionate about crafting digital experiences that make a
+                difference. Let's create something amazing together!
+              </p>
+            </div>
 
             <div className={style.socialImages}>
               <Image src={facebook} alt="facebook" width={25} height={25} />

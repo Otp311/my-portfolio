@@ -76,6 +76,13 @@
     justify-content: space-evenly;
   }
 
+  .contactContainer {
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
   .heading {
     color: rgba(14, 93, 211, 0.959);
     font-family: "Roboto", sans-serif;
@@ -105,7 +112,8 @@
   .form {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 40%;
+    padding: 50px 0 ;
   }
   
   .input {
@@ -154,13 +162,21 @@
   }
 
   .text {
-    color: rgb(22, 22, 22, 80%);
+    color: rgb(22, 22, 22);
     font-family: "Roboto", sans-serif;
+    width: 50%;
+  }
+  .me {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
   }
 
   .text p {
-    font-size: 15px;
-    font-weight: 900;
+    line-height: 30px;
+    width: 60%;
+    font-size: 18px;
+    text-align: justify;
   }
 
   .footer {
@@ -219,7 +235,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      outline: red dashed;
     }
 
     .text {
@@ -233,9 +248,64 @@
       width: 90%;
     }
 
-    .footer {
-      justify-self: center;
-      align-self: center;
-      background-color: #000000;
+    .footerTop {
+      width: 100%;
+      display: flex;
+      
+    }
+    
+  }
+
+  @media (max-width: 580px) {
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ContactPage {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .contactContainer {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .text p {
+      outline: red dashed;
+      width: 100%;
+    }
+
+    .form {
+      width: 90%;
+    }
+
+    .footerTop {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .socialImages img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .back {
+      font-size: 13px;
     }
   }
