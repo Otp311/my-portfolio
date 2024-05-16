@@ -41,7 +41,6 @@ export default function Home() {
         <div className={styles.info}>
           <div className={styles.imageContainer}>
             <div className={styles.image}>
-              <div className={styles.background}>.</div>
               <Image src={cropted1} alt="cropted" width={450} height={450} />
             </div>
           </div>

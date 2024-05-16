@@ -43,7 +43,7 @@ const Contact = () => {
 
           <div className={style.navlink}>
             <div className={style.talk}>
-              <Link href="/services">Let&apos;s talk</Link>
+              <Link href="/">Back</Link>
               <Image src={arrow} alt="Arrow" width={30} height={30} />
             </div>
           </div>
@@ -52,7 +52,11 @@ const Contact = () => {
       <div className={style.ContactPage}>
         <div className={style.text}>
           <h1 className={style.heading}>Contact Me</h1>
-          <p>Let's build something amazing together</p>
+          <p>
+            Like what you see? Let's build something amazing together! Contact
+            me today for a free consultation. Your dream website is just a click
+            away! Contact me now to get started.
+          </p>
         </div>
         <div className={style.messageContainer}>
           {message && (
