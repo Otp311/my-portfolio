@@ -8,7 +8,7 @@ import facebook from "/public/images/facebook.png";
 import instagram from "/public/images/instagram.png";
 import twitter from "/public/images/twitter.png";
 import Link from "next/link";
-import arrow from "/public/images/arrow.png";
+import two from "/public/images/two.png";
 
 const Contact = () => {
   const [message, setMessage] = useState("");
@@ -43,8 +43,10 @@ const Contact = () => {
 
           <div className={style.navlink}>
             <div className={style.talk}>
-              <Link href="/">Back</Link>
-              <Image src={arrow} alt="Arrow" width={30} height={30} />
+              <Link className={style.rigthLink} href="/">
+                Back
+                <Image src={two} alt="Arrow" width={30} height={30} />
+              </Link>
             </div>
           </div>
         </div>
@@ -53,9 +55,9 @@ const Contact = () => {
         <div className={style.text}>
           <h1 className={style.heading}>Contact Me</h1>
           <p>
-            Like what you see? Let's build something amazing together! Contact
-            me today for a free consultation. Your dream website is just a click
-            away! Contact me now to get started.
+            Like what you see? Let&apos;s build something amazing together!
+            Contact me today for a free consultation. Your dream website is just
+            a click away! Contact me now to get started.
           </p>
         </div>
         <div className={style.messageContainer}>

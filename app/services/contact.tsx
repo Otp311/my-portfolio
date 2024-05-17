@@ -60,9 +60,9 @@ const Contact = () => {
           <div className={style.text}>
             <h1 className={style.heading}>Contact Me</h1>
             <p>
-              Like what you see? Let's build something amazing together! Contact
-              me today for a free consultation. Your dream website is just a
-              click away! Contact me now to get started.
+              Like what you see? Let&apos;s build something amazing together!
+              Contact me today for a free consultation. Your dream website is
+              just a click away! Contact me now to get started.
             </p>
           </div>
 

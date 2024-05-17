@@ -17,6 +17,13 @@
     width: 80%;
   }
 
+  .rigthLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
   .navbar {
     display: flex;
     position: relative;
@@ -165,9 +172,9 @@
 
   .text {
     color: rgb(22, 22, 22);
-    font-family: "Century Gothic", sans-serif;
-    font-weight: 500;
+    font-family: "Poppins";
     width: 50%;
+    gap: 10px;
   }
   .me {
     display: flex;
@@ -175,11 +182,15 @@
     width: 50%;
   }
 
+  .text h1 {
+    font-family: 'Rowdies', sans-serif;
+  }
+
   .text p {
     line-height: 30px;
-    width: 60%;
-    font-size: 18px;
+    font-size: 17px;
     text-align: justify;
+    width: 90%;
   }
 
   .footer {
@@ -242,8 +253,8 @@
 
     .text {
       display: flex;
-      justify-content: start;
-      align-items: start;
+      justify-content: flex-start;
+      align-items: flex-start;
       flex-direction: column;
       width: 90%;
     }
@@ -276,8 +287,8 @@
 
     .text {
       display: flex;
-      justify-content: start;
-      align-items: start;
+      justify-content: flex-start;
+      align-items: flex-start;
       flex-direction: column;
     }
 

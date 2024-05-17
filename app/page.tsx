@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
@@ -16,6 +17,7 @@ import cafe from "/public/images/cafe.png";
 import csm from "/public/images/csm.png";
 import Contact from "./services/contact";
 import two from "/public/images/two.png";
+import Downloadbutton from "./components/resumeButton";
 
 export default function Home() {
   return (
@@ -30,8 +32,10 @@ export default function Home() {
 
           <div className={styles.navlink}>
             <div className={styles.talk}>
-              <Link href="/services">Let&apos;s talk</Link>
-              <Image src={two} alt="Arrow" width={30} height={30} />
+              <Link className={styles.rigthLink} href="/services">
+                Let&apos;s talk{" "}
+                <Image src={two} alt="Arrow" width={30} height={30} />
+              </Link>
             </div>
           </div>
         </div>
@@ -53,10 +57,10 @@ export default function Home() {
               <div className={styles.intro}>
                 <p>
                   Is your website struggling to keep up with your business
-                  goals? Don't settle for a mediocre online presence. Partner
-                  with a seasoned web developer who understands that your
-                  website is more than just a digital storefront – it's a
-                  powerful tool for growth. I specialize in crafting
+                  goals? Don&apos;t settle for a mediocre online presence.
+                  Partner with a seasoned web developer who understands that
+                  your website is more than just a digital storefront –
+                  it&apos;s a powerful tool for growth. I specialize in crafting
                   user-friendly websites that not only look stunning but also
                   deliver results, driving engagement, conversions, and
                   ultimately, boosting your bottom line.
@@ -65,13 +69,17 @@ export default function Home() {
 
               <div className={styles.buttons}>
                 <button className={styles.contact}>Contact me</button>
-                <button className={styles.resume}>Download Resume</button>
+                <Downloadbutton />
               </div>
             </div>
 
             <div className={styles.socialacc}>
-              <Image src={facebook} alt="facebook" width={30} height={30} />
-              <Image src={instagram} alt="insragram" width={30} height={30} />
+              <div className={styles.fb}>
+                <Image src={facebook} alt="facebook" width={30} height={30} />
+              </div>
+              <div className={styles.ig}>
+                <Image src={instagram} alt="insragram" width={30} height={30} />
+              </div>
               <Image src={twitter} alt="twitter" width={30} height={30} />
             </div>
           </div>
@@ -83,19 +91,19 @@ export default function Home() {
           <div className={styles.about}>
             <span>About me</span>
             <p>
-              I'm a passionate web developer who thrives on the creative
+              I&apos;m a passionate web developer who thrives on the creative
               challenges of transforming ideas into captivating digital
               realities. My love for design and technology fuels my drive to
               build websites that are visually appealing, user-friendly, and
               tailored to meet the unique needs of each project. I believe in
               collaboration and open communication to ensure every website I
-              create is a true reflection of my client's vision. Driven web
+              create is a true reflection of my client&apos;s vision. Driven web
               developer dedicated to building websites that not only look
               stunning but also function flawlessly. With a keen eye for detail
               and a deep understanding of user-centric design principles, I
               create online experiences that are both engaging and effective.
-              I'm always eager to learn new technologies and methodologies to
-              stay at the forefront of web development.
+              I&apos;m always eager to learn new technologies and methodologies
+              to stay at the forefront of web development.
             </p>
           </div>
 
@@ -174,9 +182,9 @@ export default function Home() {
                 Cafe
               </Link>
               <p>
-                We've leveraged the power of Next.js to create an interactive
-                and engaging online experience that mirrors the warmth and
-                vibrancy of our cafe.
+                We&apos;ve leveraged the power of Next.js to create an
+                interactive and engaging online experience that mirrors the
+                warmth and vibrancy of our cafe.
               </p>
             </div>
 
