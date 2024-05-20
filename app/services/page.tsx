@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import { sendContactForm } from ".";
 import style from "./contactPage.module.css";
+import emailjs from "emailjs-com";
 import Image from "next/image";
 import facebook from "/public/images/facebook.png";
 import instagram from "/public/images/instagram.png";
@@ -12,26 +13,51 @@ import fastbackward from "/public/images/fastbackward.gif";
 import back from "/public/images/back.jpg";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    user_name: "",
+    user_email: "",
+    message: "",
+  });
   const [message, setMessage] = useState("");
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const submitContact = async (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const submitContact = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+
     const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      comment: formData.get("comment"),
+      user_name: formData.user_name,
+      user_email: formData.user_email,
+      message: formData.message,
     };
-    const res = await sendContactForm(data);
-    if (res === 0) {
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current!,
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
+      );
       setMessage("Thank you for your valuable comment!");
-      formRef.current.reset();
-    } else {
+      formRef.current?.reset();
+      setFormData({
+        user_name: "",
+        user_email: "",
+        message: "",
+      });
+    } catch (error) {
       setMessage("Something went wrong! Please try again");
     }
   };
-
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -83,8 +109,9 @@ const Contact = () => {
               <label className={style.label}>Name</label>
               <input
                 className={style.input}
-                name="name"
+                name="user_name"
                 required
+                onChange={handleChange}
                 type="text"
                 minLength={3}
                 maxLength={25}
@@ -92,15 +119,17 @@ const Contact = () => {
               <label className={style.label}>Email</label>
               <input
                 className={style.input}
-                name="email"
+                name="use_email"
                 required
+                onChange={handleChange}
                 type="email"
               />
               <label className={style.label}>Message</label>
               <textarea
                 className={style.textarea}
-                name="comment"
+                name="message"
                 required
+                onChange={handleChange}
                 rows={5}
               ></textarea>
               <button className={style.button} type="submit">
