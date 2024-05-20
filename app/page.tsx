@@ -16,7 +16,7 @@ import atom from "/public/images/atom.png";
 import cafe from "/public/images/cafe.png";
 import csm from "/public/images/csm.png";
 import Contact from "./services/contact";
-import two from "/public/images/two.png";
+import chat from "/public/images/chat.gif";
 import Downloadbutton from "./components/resumeButton";
 
 export default function Home() {
@@ -34,7 +34,7 @@ export default function Home() {
             <div className={styles.talk}>
               <Link className={styles.rigthLink} href="/services">
                 Let&apos;s talk{" "}
-                <Image src={two} alt="Arrow" width={30} height={30} />
+                <Image src={chat} alt="chat" width={60} height={60} />
               </Link>
             </div>
           </div>
@@ -68,7 +68,9 @@ export default function Home() {
               </div>
 
               <div className={styles.buttons}>
-                <button className={styles.contact}>Contact me</button>
+                <Link href="/services" className={styles.contact}>
+                  Contact me
+                </Link>
                 <Downloadbutton />
               </div>
             </div>

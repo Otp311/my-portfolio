@@ -113,7 +113,9 @@ const Contact = () => {
             </div>
 
             <div className={style.socialImages}>
-              <Image src={facebook} alt="facebook" width={25} height={25} />
+              <div className={style.facebook}>
+                <Image src={facebook} alt="facebook" width={25} height={25} />
+              </div>
               <Image src={instagram} alt="instagram" width={25} height={25} />
               <Image src={twitter} alt="twitter" width={25} height={25} />
             </div>

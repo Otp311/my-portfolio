@@ -2,13 +2,15 @@
 
 import React, { useState, useRef } from "react";
 import { sendContactForm } from ".";
-import style from "./contact.module.css";
+import style from "./contactPage.module.css";
 import Image from "next/image";
 import facebook from "/public/images/facebook.png";
 import instagram from "/public/images/instagram.png";
 import twitter from "/public/images/twitter.png";
 import Link from "next/link";
-import two from "/public/images/two.png";
+import fastbackward from "/public/images/fastbackward.gif";
+import back from "/public/images/back.jpg";
+import chat from "/public/images/chat.gif";
 
 const Contact = () => {
   const [message, setMessage] = useState("");
@@ -45,52 +47,69 @@ const Contact = () => {
             <div className={style.talk}>
               <Link className={style.rigthLink} href="/">
                 Back
-                <Image src={two} alt="Arrow" width={30} height={30} />
+                <Image
+                  src={fastbackward}
+                  alt="fastbackward"
+                  width={30}
+                  height={25}
+                />
               </Link>
             </div>
           </div>
         </div>
       </div>
-      <div className={style.ContactPage}>
-        <div className={style.text}>
-          <h1 className={style.heading}>Contact Me</h1>
-          <p>
-            Like what you see? Let&apos;s build something amazing together!
-            Contact me today for a free consultation. Your dream website is just
-            a click away! Contact me now to get started.
-          </p>
-        </div>
-        <div className={style.messageContainer}>
-          {message && (
-            <div className={style.message}>
-              {message}
-              <span onClick={() => setMessage("")}>&times;</span>
+      <div className={style.Main}>
+        <div className={style.ContactPage}>
+          <div className={style.Image}>
+            <Image src={back} alt="Back" width={600} height={600} />
+          </div>
+          <div className={style.rigthside}>
+            <div className={style.text}>
+              <h1 className={style.heading}>Contact Me</h1>
+              <p>
+                Like what you see? Let&apos;s build something amazing together!
+                Contact me today for a free consultation. Your dream website is
+                just a click away! Contact me now to get started.
+              </p>
             </div>
-          )}
+            <div className={style.messageContainer}>
+              {message && (
+                <div className={style.message}>
+                  {message}
+                  <span onClick={() => setMessage("")}>&times;</span>
+                </div>
+              )}
+            </div>
+            <form className={style.form} ref={formRef} onSubmit={submitContact}>
+              <label className={style.label}>Name</label>
+              <input
+                className={style.input}
+                name="name"
+                required
+                type="text"
+                minLength={3}
+                maxLength={25}
+              />
+              <label className={style.label}>Email</label>
+              <input
+                className={style.input}
+                name="email"
+                required
+                type="email"
+              />
+              <label className={style.label}>Message</label>
+              <textarea
+                className={style.textarea}
+                name="comment"
+                required
+                rows={5}
+              ></textarea>
+              <button className={style.button} type="submit">
+                Send
+              </button>
+            </form>
+          </div>
         </div>
-        <form className={style.form} ref={formRef} onSubmit={submitContact}>
-          <label className={style.label}>Name</label>
-          <input
-            className={style.input}
-            name="name"
-            required
-            type="text"
-            minLength={3}
-            maxLength={25}
-          />
-          <label className={style.label}>Email</label>
-          <input className={style.input} name="email" required type="email" />
-          <label className={style.label}>Message</label>
-          <textarea
-            className={style.textarea}
-            name="comment"
-            required
-            rows={5}
-          ></textarea>
-          <button className={style.button} type="submit">
-            Send
-          </button>
-        </form>
       </div>
       <div className={style.horizontalLine}></div>
       <footer className={style.footer}>
