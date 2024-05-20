@@ -79,6 +79,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-content: space-evenly;
     flex-direction: row;
     width: 100%;
     padding: 100px 0 100px 0;
@@ -89,6 +90,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 60%;
   }
 
   .contactContainer {
@@ -110,17 +112,24 @@
   }
   
   .messageContainer {
+    display: flex;
+    justify-content: flex-start;
+    width: 60%;
     margin-bottom: 10px;
   }
   
   .message {
     display: flex;
     align-items: center;
-    background-color: #dff0d8;
-    color: #3c763d;
+    justify-content: space-between;
+    background-color: #0876eb;
+    color: #fafafae1;
     border: 1px solid #d6e9c6;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
     border-radius: 4px;
-    padding: 30px;
+    padding: 15px;
+    width: 70%;
   }
   
   .message span {
@@ -339,9 +348,14 @@
       align-items: center;
     }
 
+    .rigthside {
+      width: 90%;
+    }
+
     .contactContainer {
       display: flex;
       flex-direction: column;
+
     }
 
     .Image img {

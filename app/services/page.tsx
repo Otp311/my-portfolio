@@ -10,7 +10,6 @@ import twitter from "/public/images/twitter.png";
 import Link from "next/link";
 import fastbackward from "/public/images/fastbackward.gif";
 import back from "/public/images/back.jpg";
-import chat from "/public/images/chat.gif";
 
 const Contact = () => {
   const [message, setMessage] = useState("");

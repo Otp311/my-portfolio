@@ -16,10 +16,12 @@ const Contact = () => {
     user_email: "",
     message: "",
   });
+  const [message, setMessage] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const formRef = useRef();
-
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -27,30 +29,32 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
-      )
-      .then(
-        (result) => {
-          alert("Message sent successfully!");
-        },
-        (error) => {
-          alert("Failed to send message: " + error.text);
-        }
-      );
+    const data = {
+      user_name: formData.user_name,
+      user_email: formData.user_email,
+      message: formData.message,
+    };
 
-    setFormData({
-      user_name: "",
-      user_email: "",
-      message: "",
-    });
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current!,
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
+      );
+      setMessage("Thank you for your valuable comment!");
+      formRef.current?.reset();
+      setFormData({
+        user_name: "",
+        user_email: "",
+        message: "",
+      });
+    } catch (error) {
+      setMessage("Something went wrong! Please try again");
+    }
   };
 
   return (
@@ -67,6 +71,14 @@ const Contact = () => {
           </div>
 
           <form className={style.form} ref={formRef} onSubmit={handleSubmit}>
+            <div className={style.messageContainer}>
+              {message && (
+                <div className={style.message}>
+                  {message}
+                  <span onClick={() => setMessage("")}>&times;</span>
+                </div>
+              )}
+            </div>
             <label className={style.label}>Name</label>
             <input
               className={style.input}
