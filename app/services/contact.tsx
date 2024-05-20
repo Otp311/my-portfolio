@@ -108,7 +108,7 @@ const Contact = () => {
               <span>Joseph</span>
               <p>
                 Passionate about crafting digital experiences that make a
-                difference. Let's create something amazing together!
+                difference. Let&apos;s create something amazing together!
               </p>
             </div>
 
