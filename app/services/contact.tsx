@@ -125,11 +125,24 @@ const Contact = () => {
             </div>
 
             <div className={style.socialImages}>
-              <div className={style.facebook}>
-                <Image src={facebook} alt="facebook" width={25} height={25} />
+              <div className={style.fb}>
+                <Link href="https://www.facebook.com/profile.php?id=100009152509131">
+                  <Image src={facebook} alt="facebook" width={25} height={25} />
+                </Link>
               </div>
-              <Image src={instagram} alt="instagram" width={25} height={25} />
-              <Image src={twitter} alt="twitter" width={25} height={25} />
+              <div className={style.ig}>
+                <Link href="#">
+                  <Image
+                    src={instagram}
+                    alt="instagram"
+                    width={25}
+                    height={25}
+                  />
+                </Link>
+              </div>
+              <div className={style.tw}>
+                <Image src={twitter} alt="twitter" width={25} height={25} />
+              </div>
             </div>
           </div>
 

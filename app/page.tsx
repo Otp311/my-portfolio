@@ -82,7 +82,9 @@ export default function Home() {
               <div className={styles.ig}>
                 <Image src={instagram} alt="insragram" width={30} height={30} />
               </div>
-              <Image src={twitter} alt="twitter" width={30} height={30} />
+              <div className={styles.tw}>
+                <Image src={twitter} alt="twitter" width={30} height={30} />
+              </div>
             </div>
           </div>
         </div>
