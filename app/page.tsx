@@ -1,4 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
@@ -20,6 +24,17 @@ import chat from "/public/images/chat.gif";
 import Downloadbutton from "./components/resumeButton";
 
 export default function Home() {
+  const controls = useAnimation(); // Initialize controls using useAnimation()
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({ opacity: 1 });
+    } else {
+      controls.start({ opacity: 0 });
+    }
+  }, [controls, inView]);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -41,20 +56,44 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={styles.heropage}>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 2 }}
+        className={styles.heropage}
+      >
         <div className={styles.info}>
           <div className={styles.imageContainer}>
-            <div className={styles.image}>
+            <motion.div
+              ref={ref}
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2 }}
+              className={styles.image}
+            >
               <Image src={cropted1} alt="cropted" width={450} height={450} />
-            </div>
+            </motion.div>
           </div>
 
           <div className={styles.text}>
             <div className={styles.left}>
-              <div className={styles.heroName}>
+              <motion.div
+                ref={ref}
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 2 }}
+                className={styles.heroName}
+              >
                 <span>JOSEPH</span>
-              </div>
-              <div className={styles.intro}>
+              </motion.div>
+              <motion.div
+                ref={ref}
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 2 }}
+                className={styles.intro}
+              >
                 <p>
                   Is your website struggling to keep up with your business
                   goals? Don&apos;t settle for a mediocre online presence.
@@ -65,7 +104,7 @@ export default function Home() {
                   deliver results, driving engagement, conversions, and
                   ultimately, boosting your bottom line.
                 </p>
-              </div>
+              </motion.div>
 
               <div className={styles.buttons}>
                 <Link href="/services" className={styles.contact}>
@@ -88,9 +127,15 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className={styles.Secondsection}>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: inView ? 1 : 0, y: inView ? 1 : 100 }}
+        transition={{ duration: 2 }}
+        className={styles.Secondsection}
+      >
         <div className={styles.Secondcontent}>
           <div className={styles.about}>
             <span>About me</span>
@@ -117,7 +162,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <div className={styles.Thirdcontainer}>
         <div className={styles.skills}>
