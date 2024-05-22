@@ -49,9 +49,9 @@ const animationVariants5 = {
   visible: { opacity: 1, y: 0 },
 };
 
-const useIntersectionObserver = (options) => {
+const useIntersectionObserver = (options: IntersectionObserverInit) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -72,10 +72,10 @@ const useIntersectionObserver = (options) => {
     };
   }, [options]);
 
-  return [ref, isVisible];
+  return [ref, isVisible] as const;
 };
 
-export default function Home() {
+const Home: React.FC = () => {
   const [ref1, isInView1] = useIntersectionObserver({ threshold: 0.1 });
   const [ref2, isInView2] = useIntersectionObserver({ threshold: 0.1 });
   const [ref3, isInView3] = useIntersectionObserver({ threshold: 0.1 });
@@ -369,4 +369,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;
