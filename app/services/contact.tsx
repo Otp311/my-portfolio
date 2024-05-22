@@ -45,7 +45,7 @@ const Contact = () => {
         formRef.current!,
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
       );
-      setMessage("Thank you for your valuable comment!");
+      setMessage("Thank you for reaching out!");
       formRef.current?.reset();
       setFormData({
         user_name: "",

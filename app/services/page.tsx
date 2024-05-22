@@ -47,7 +47,7 @@ const Contact = () => {
         formRef.current!,
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
       );
-      setMessage("Thank you for your valuable comment!");
+      setMessage("Thank you for reaching out!");
       formRef.current?.reset();
       setFormData({
         user_name: "",
@@ -97,15 +97,16 @@ const Contact = () => {
                 just a click away! Contact me now to get started.
               </p>
             </div>
-            <div className={style.messageContainer}>
-              {message && (
-                <div className={style.message}>
-                  {message}
-                  <span onClick={() => setMessage("")}>&times;</span>
-                </div>
-              )}
-            </div>
+
             <form className={style.form} ref={formRef} onSubmit={submitContact}>
+              <div className={style.messageContainer}>
+                {message && (
+                  <div className={style.message}>
+                    {message}
+                    <span onClick={() => setMessage("")}>&times;</span>
+                  </div>
+                )}
+              </div>
               <label className={style.label}>Name</label>
               <input
                 className={style.input}

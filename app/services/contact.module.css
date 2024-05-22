@@ -400,4 +400,12 @@
     .me p {
       text-align: justify;
     }
+
+    .messageContainer {
+      width: 100%;
+    }
+
+    .message {
+      width: 100%;
+    }
   }

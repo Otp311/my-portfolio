@@ -396,4 +396,20 @@
     .text p {
       font-size: 15px;
     }
+
+    .rigthside {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .messageContainer {
+      width: 100%;
+    }
+
+    .message {
+      justify-self: center;
+      align-self: center;
+      width: 100%;
+    }
   }
