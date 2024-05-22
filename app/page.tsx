@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
@@ -22,22 +22,83 @@ import csm from "/public/images/csm.png";
 import Contact from "./services/contact";
 import chat from "/public/images/chat.gif";
 import Downloadbutton from "./components/resumeButton";
+import { once } from "events";
 
-export default function Home() {
-  const controls = useAnimation(); // Initialize controls using useAnimation()
-  const [ref, inView] = useInView();
+const animationVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const animationVariants2 = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const animationVariants3 = {
+  hidden: { opacity: 0, y: -50 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const animationVariants4 = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const animationVariants5 = {
+  hidden: { opacity: 0, y: -50 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const useIntersectionObserver = (options) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
 
   useEffect(() => {
-    if (inView) {
-      controls.start({ opacity: 1 });
-    } else {
-      controls.start({ opacity: 0 });
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.unobserve(entry.target);
+      }
+    }, options);
+
+    if (ref.current) {
+      observer.observe(ref.current);
     }
-  }, [controls, inView]);
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [options]);
+
+  return [ref, isVisible];
+};
+
+export default function Home() {
+  const [ref1, isInView1] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref2, isInView2] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref3, isInView3] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref4, isInView4] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref5, isInView5] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref6, isInView6] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref7, isInView7] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref8, isInView8] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref9, isInView9] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref10, isInView10] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref11, isInView11] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref12, isInView12] = useIntersectionObserver({ threshold: 0.1 });
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <motion.div
+        ref={ref12}
+        initial="hidden"
+        animate={isInView12 ? "visible" : "hidden"}
+        variants={animationVariants5}
+        transition={{ duration: 1.5 }}
+        className={styles.header}
+      >
         <div className={styles.navbar}>
           <Link href="/" className={styles.logo}>
             <h1 className={styles.o}>O</h1>
@@ -54,44 +115,48 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 2 }}
+        ref={ref1}
+        initial="hidden"
+        animate={isInView1 ? "visible" : "hidden"}
+        variants={animationVariants}
+        transition={{ duration: 1.5 }}
         className={styles.heropage}
       >
         <div className={styles.info}>
-          <div className={styles.imageContainer}>
-            <motion.div
-              ref={ref}
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 2 }}
-              className={styles.image}
-            >
+          <motion.div
+            ref={ref2}
+            initial="hidden"
+            animate={isInView2 ? "visible" : "hidden"}
+            variants={animationVariants2}
+            transition={{ duration: 1.5 }}
+            className={styles.imageContainer}
+          >
+            <div className={styles.image}>
               <Image src={cropted1} alt="cropted" width={450} height={450} />
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
 
           <div className={styles.text}>
             <div className={styles.left}>
               <motion.div
-                ref={ref}
-                initial={{ opacity: 0, y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 2 }}
+                ref={ref3}
+                initial="hidden"
+                animate={isInView3 ? "visible" : "hidden"}
+                variants={animationVariants3}
+                transition={{ duration: 1.5 }}
                 className={styles.heroName}
               >
                 <span>JOSEPH</span>
               </motion.div>
               <motion.div
-                ref={ref}
-                initial={{ opacity: 0, x: -100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 2 }}
+                ref={ref4}
+                initial="hidden"
+                animate={isInView4 ? "visible" : "hidden"}
+                variants={animationVariants4}
+                transition={{ duration: 1.5 }}
                 className={styles.intro}
               >
                 <p>
@@ -130,10 +195,11 @@ export default function Home() {
       </motion.div>
 
       <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: inView ? 1 : 0, y: inView ? 1 : 100 }}
-        transition={{ duration: 2 }}
+        ref={ref5}
+        initial="hidden"
+        animate={isInView5 ? "visible" : "hidden"}
+        variants={animationVariants}
+        transition={{ duration: 1.1 }}
         className={styles.Secondsection}
       >
         <div className={styles.Secondcontent}>
@@ -169,49 +235,91 @@ export default function Home() {
           <span>Tech Stack Skills</span>
 
           <div className={styles.Planguages}>
-            <div className={styles.next}>
+            <motion.div
+              ref={ref6}
+              initial="hidden"
+              animate={isInView6 ? "visible" : "hidden"}
+              variants={animationVariants}
+              transition={{ duration: 1 }}
+              className={styles.next}
+            >
               <Image src={Nextjs} alt="NextJS" width={50} height={50} />
               <span>Next.js</span>
               <p>
                 Proficient in building performant web applications with Next.js.
               </p>
-            </div>
+            </motion.div>
 
-            <div className={styles.figma}>
+            <motion.div
+              ref={ref7}
+              initial="hidden"
+              animate={isInView7 ? "visible" : "hidden"}
+              variants={animationVariants}
+              transition={{ duration: 1.5 }}
+              className={styles.figma}
+            >
               <Image src={figma} alt="Figma" width={50} height={50} />
               <span>Figma</span>
               <p>Adept at designing user interfaces with Figma.</p>
-            </div>
+            </motion.div>
 
-            <div className={styles.css}>
+            <motion.div
+              ref={ref8}
+              initial="hidden"
+              animate={isInView8 ? "visible" : "hidden"}
+              variants={animationVariants}
+              transition={{ duration: 2 }}
+              className={styles.css}
+            >
               <Image src={css} alt="CSS" width={50} height={50} />
               <span>CSS</span>
               <p>Experienced in styling and layout design using CSS.</p>
-            </div>
+            </motion.div>
           </div>
 
           <div className={styles.Planguages1}>
-            <div className={styles.html}>
+            <motion.div
+              ref={ref9}
+              initial="hidden"
+              animate={isInView9 ? "visible" : "hidden"}
+              variants={animationVariants}
+              transition={{ duration: 1 }}
+              className={styles.html}
+            >
               <Image src={html} alt="HTML" width={50} height={50} />
               <span>HTML</span>
               <p>Strong foundation in structuring web content with HTML.</p>
-            </div>
+            </motion.div>
 
-            <div className={styles.python}>
+            <motion.div
+              ref={ref10}
+              initial="hidden"
+              animate={isInView10 ? "visible" : "hidden"}
+              variants={animationVariants}
+              transition={{ duration: 1.5 }}
+              className={styles.python}
+            >
               <Image src={python} alt="Python" width={50} height={50} />
               <span>Python</span>
               <p>
                 Comfortable with Python for backend development and scripting.
               </p>
-            </div>
+            </motion.div>
 
-            <div className={styles.react}>
+            <motion.div
+              ref={ref11}
+              initial="hidden"
+              animate={isInView11 ? "visible" : "hidden"}
+              variants={animationVariants}
+              transition={{ duration: 2 }}
+              className={styles.react}
+            >
               <Image src={atom} alt="Atom" width={50} height={50} />
               <span>React</span>
               <p>
                 Skilled in crafting interactive user interfaces using React.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
 
